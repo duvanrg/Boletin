@@ -7,28 +7,24 @@ internal class Program
     private static void Main(string[] args)
     {
         List<Estudiante> ListaEst = new List<Estudiante>();
+        Estudiante student = new Estudiante();
         bool run = true;
+        ListaEst = MisFunciones.LoadData();
         while (run)
         {
-            Estudiante student = new Estudiante();
             Console.Clear();
             Console.WriteLine("1. Registro de estudiantes");
             Console.WriteLine("2. Registro de notas");
             Console.WriteLine("3. Reportes e informes");
-            Console.WriteLine("4. Salir");
+            Console.WriteLine("4. Eliminar estudiante");
+            Console.WriteLine("5. Salir");
             Console.Write("> ");
             byte opc = Convert.ToByte(Console.ReadLine());
             switch (opc)
             {
                 case 1:
                     student.AgregarEstudiante(ListaEst);
-                    foreach (Estudiante item in ListaEst)
-                    {
-                        Console.WriteLine($"{item.Code}");
-                        Console.WriteLine($"{item.Nombre}");
-                        Console.WriteLine($"{item.Direccion}");
-                        Console.WriteLine($"{item.Edad}");
-                    }
+                    MisFunciones.SaveData(ListaEst);
                     Console.ReadKey();
                     break;
                 case 2:
@@ -36,35 +32,16 @@ internal class Program
                     while (menuNotas)
                     {
                         Console.Clear();
-
                         byte OpcNotas = MisFunciones.MenuNotas();
-                        switch (OpcNotas)
-                        {
-                            case 1:
-                                Console.Clear();
-
-                                student.agregarNota(ListaEst, 1);
-
-                                Console.ReadKey();
-                                break;
-                            case 2:
-                                Console.Clear();
-                                break;
-                            case 3:
-                                Console.Clear();
-                                break;
-                            case 4:
-                                Console.Clear();
-                                menuNotas = false;
-                                break;
-                            default:
-                                Console.Clear();
-                                Console.WriteLine("opcion no valida");
-                                Console.WriteLine("Seleccione una opcion valida");
-                                Console.ReadKey();
-                                break;
+                        if(OpcNotas != 0 || OpcNotas > 3){
+                            Console.Clear();
+                                student.RegistroNota(ListaEst, OpcNotas);
+                                MisFunciones.SaveData(ListaEst);
                         }
-
+                        else{
+                            menuNotas = false;
+                        }
+                        
                     }
 
                     break;
@@ -96,6 +73,11 @@ internal class Program
                     }
                     break;
                 case 4:
+                    Console.Clear();
+                    student.RemoveItem(ListaEst);
+                    Console.ReadKey();
+                    break;
+                case 5:
                     Console.Clear();
                     run = false;
                     break;

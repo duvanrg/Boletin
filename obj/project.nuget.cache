@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "cNaOhDDL4Hh3oc/rNrLHZGnAi5GyvqCaPe+zRe7RQ3iIbSsqxS0i/rx1vA4U97XIyfykPV+dWkfBzi+RJtpEAA==",
+  "dgSpecHash": "Jq8BixG8dmwPilD+rrjL7kF5eQslej+FyIog2IoZsyGgsgoWNFI73fFPnMJv+L/zMG+omAbO+7EjMtcoI5vL7w==",
   "success": true,
-  "projectFilePath": "c:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\C-sharp\\Boletin\\Boletin.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\duvan\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,0 +1,26 @@
+[
+    {
+        "Code": "123",
+        "Nombre": "duban",
+        "Direccion": "campus",
+        "Edad": 20,
+        "Quices": [
+            5.0
+        ],
+        "Trabajos": [
+            4.0
+        ],
+        "Parciales": []
+    },
+    {
+        "Code": "321",
+        "Nombre": "paola",
+        "Direccion": "campus",
+        "Edad": 18,
+        "Quices": [],
+        "Trabajos": [],
+        "Parciales": [
+            3.0
+        ]
+    }
+]
