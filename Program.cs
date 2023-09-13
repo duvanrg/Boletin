@@ -17,7 +17,9 @@ internal class Program
             Console.WriteLine("2. Registro de notas");
             Console.WriteLine("3. Reportes e informes");
             Console.WriteLine("4. Eliminar estudiante");
-            Console.WriteLine("5. Salir");
+            Console.WriteLine("5. Editar Estudiante");
+            Console.WriteLine("6. Buscar Estudiante");
+            Console.WriteLine("7. Salir");
             Console.Write("> ");
             byte opc = Convert.ToByte(Console.ReadLine());
             switch (opc)
@@ -78,6 +80,16 @@ internal class Program
                     Console.ReadKey();
                     break;
                 case 5:
+                    Console.Clear();
+                    student.EditItem(ListaEst);
+                    Console.ReadKey();
+                    break;
+                case 6:
+                    Console.Clear();
+                    student.SearchItem(ListaEst);
+                    Console.ReadKey();
+                    break;
+                case 7:
                     Console.Clear();
                     run = false;
                     break;

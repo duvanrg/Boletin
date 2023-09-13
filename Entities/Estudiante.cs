@@ -96,33 +96,224 @@ namespace Boletin.Entities
             {
                 ListEst.Remove(studentToRemove);
                 MisFunciones.SaveData(ListEst);
-            }else{
+            }
+            else
+            {
                 Console.WriteLine("Estudiante no encontrado");
                 Console.ReadKey();
             }
         }
-
         public void EditItem(List<Estudiante> ListEst)
         {
             Console.Clear();
+            byte count = 0;
+            int idxnota = 0;
             Console.WriteLine("Ingrese el codigo del estudiante a Editar: ");
             string studentCode = Console.ReadLine();
-            Estudiante studentToEdit = ListEst.FirstOrDefault(x => (x.Code ?? string.Empty).Equals(studentCode)) ?? new Estudiante();
-            if (studentToEdit != null)
+            Estudiante STE = ListEst.FirstOrDefault(x => (x.Code ?? string.Empty).Equals(studentCode)) ?? new Estudiante();
+            if (STE != null)
             {
-                Console.WriteLine($"1. {studentToEdit.Code} \n2. {studentToEdit.Nombre} \n3. {studentToEdit.Direccion} \n4. {studentToEdit.Edad} \n5. Notas Quices \n6. Notas Quices \n7. Notas Quices \n8. Salir");
+                Console.Clear();
+                Console.WriteLine($"Seleccione el dato que quiere editar: \n1. Codigo: {STE.Code} \n2. Nombre: {STE.Nombre} \n3. Direccion: {STE.Direccion} \n4. Edad: {STE.Edad} \n5. Notas Quices \n6. Notas Quices \n7. Notas Quices \n8. Salir");
                 byte edit = Convert.ToByte(Console.ReadLine());
-                string tipo = 
-                edit == 1 ? "codigo" : edit == 2 ? "Nombre" : edit == 3 ? "Direccion" : edit == 4 ? "Direccion" : edit == 5 ? "quiz" : edit == 6 ? "Trabajo" : edit == 7 ? "Parcial" : null;
-                var selec = edit == 1 ? studentToEdit.Nombre = "hola" : edit == 2 ? studentToEdit.Nombre : edit == 3 ? studentToEdit.Nombre : edit == 4 ? studentToEdit.Nombre : edit == 5 ? studentToEdit.Nombre : edit == 6 ? studentToEdit.Nombre : edit == 7 ? studentToEdit.Nombre : null;
-                int idx = ListEst.IndexOf(studentToEdit);
-                ListEst.Remove(studentToEdit);
+                string tipo =
+                edit == 1 ? "el codigo" :
+                edit == 2 ? "el Nombre" :
+                edit == 3 ? "la Direccion" :
+                edit == 4 ? "la Edad" :
+                edit == 5 ? "Quiz" :
+                edit == 6 ? "Trabajo" :
+                edit == 7 ? "Parcial" :
+                null;
+                var selec =
+                edit == 5 ? STE.Quices :
+                edit == 6 ? STE.Trabajos :
+                edit == 7 ? STE.Parciales :
+                null;
+                Console.Clear();
+                if (edit <= 4)
+                {
+                    Console.WriteLine($"Digite {tipo} nueva/o: ");
+                }
+                else if (edit <= 7)
+                {
+                    if (selec.Count() != 0)
+                    {
+                        Console.WriteLine($"cual nota de {tipo} desea editar: ");
+                        foreach (float item in selec)
+                        {
+                            count += 1;
+                            Console.WriteLine($"{tipo} {count}: {item}");
+                        }
+                        idxnota = Convert.ToInt32(Console.ReadLine()) - 1;
+                        Console.WriteLine($"Digite la nueva nota de {tipo} ");
+                        selec[idxnota] = float.Parse(Console.ReadLine());
+                    }
+                    else
+                    {
+                        Console.WriteLine($"No hay ninguna nota tipo {tipo}");
+                    }
+                }
+                switch (edit)
+                {
+                    case 1:
+                        STE.Code = Console.ReadLine();
+                        break;
+                    case 2:
+                        STE.Nombre = Console.ReadLine();
+                        break;
+                    case 3:
+                        STE.Direccion = Console.ReadLine();
+                        break;
+                    case 4:
+                        STE.Edad = Convert.ToInt32(Console.ReadLine());
+                        break;
+                    // case 5:
+                    //     Console.WriteLine($"cual nota de {edit} desea editar: ");
+                    //     foreach (float item in selec)
+                    //     {
+                    //         each += 1;
+                    //         Console.WriteLine($"1. {item}");
+                    //     }
+                    //     idxnota = Convert.ToInt32(Console.ReadLine()) - 1;
+                    //     Console.WriteLine($"Digite la nueva nota de {edit}");
+                    //     STE.Quices[idxnota] = float.Parse(Console.ReadLine());
+                    //     ;
+                    //     break;
+                    // case 6:
+                    //     Console.WriteLine($"cual nota de {edit} desea editar: ");
+                    //     foreach (float item in selec)
+                    //     {
+                    //         each += 1;
+                    //         Console.WriteLine($"1. {item}");
+                    //     }
+                    //     idxnota = Convert.ToInt32(Console.ReadLine()) - 1;
+                    //     Console.WriteLine($"Digite la nueva nota de {edit}");
+                    //     selec[idxnota] = float.Parse(Console.ReadLine());
+
+                    //     break;
+                    // case 7:
+                    //     Console.WriteLine($"cual nota de {edit} desea editar: ");
+                    //     foreach (float item in selec)
+                    //     {
+                    //         each += 1;
+                    //         Console.WriteLine($"1. {item}");
+                    //     }
+                    //     idxnota = Convert.ToInt32(Console.ReadLine()) - 1;
+                    //     Console.WriteLine($"Digite la nueva nota de {edit}");
+                    //     STE.Parciales[idxnota] = float.Parse(Console.ReadLine());
+                    //     ;
+                    //     break;
+                    default:
+                        // Console.WriteLine($"Opcion Invalida");
+                        break;
+                }
                 MisFunciones.SaveData(ListEst);
             }
             else
             {
                 Console.WriteLine("Estudiante no encontrado");
                 Console.ReadLine();
+            }
+        }
+
+        public void SearchItem(List<Estudiante> ListEst)
+        {
+            int count = 0;
+            Console.WriteLine($"Seleccione el dato a buscar: \n1. Codigo \n2. Nombre \n3. Direccion \n4. Edad \n5. Notas Quices \n6. Notas Quices \n7. Notas Quices \n8. Salir");
+            byte selec = Convert.ToByte(Console.ReadLine());
+            string tipo =
+                selec == 1 ? "el codigo" :
+                selec == 2 ? "el Nombre" :
+                selec == 3 ? "la Direccion" :
+                selec == 4 ? "la Edad" :
+                selec == 5 ? "el Quiz" :
+                selec == 6 ? "el Trabajo" :
+                selec == 7 ? "el Parcial" :
+                null;
+            if (tipo != null)
+            {
+                Console.Clear();
+                Console.WriteLine($"digite {tipo} a buscar: ");
+                string searchString = Console.ReadLine();
+
+                List<Estudiante> resultados = new List<Estudiante>();
+
+                foreach (var estudiante in ListEst)
+                {
+                    switch (selec)
+                    {
+                        case 1:
+                            if (estudiante.Code == searchString)
+                                resultados.Add(estudiante);
+                            break;
+                        case 2:
+                            if (estudiante.Nombre == searchString)
+                                resultados.Add(estudiante);
+                            break;
+                        case 3:
+                            if (estudiante.Direccion == searchString)
+                                resultados.Add(estudiante);
+                            break;
+                        case 4:
+                            if (estudiante.Edad == Convert.ToInt32(searchString))
+                                resultados.Add(estudiante);
+                            break;
+                        case 5:
+                            if (estudiante.Quices.Contains(float.Parse(searchString)))
+                                resultados.Add(estudiante);
+                            break;
+                        case 6:
+                            if (estudiante.Trabajos.Contains(float.Parse(searchString)))
+                                resultados.Add(estudiante);
+                            break;
+                        case 7:
+                            if (estudiante.Parciales.Contains(float.Parse(searchString)))
+                                resultados.Add(estudiante);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if (resultados.Count() != 0)
+                {
+
+                    Console.WriteLine($"Resultados de la búsqueda por {tipo}:");
+                    Console.WriteLine($"{resultados}");
+                    foreach (Estudiante estudiante in resultados)
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"Codigo: {estudiante.Code} \nNombre: {estudiante.Nombre} \nDireccion: {estudiante.Direccion} \nEdad: {estudiante.Edad}");
+                        Console.WriteLine($"Notas Quices");
+                        count = 0;
+                        foreach (float item in estudiante.Quices)
+                        {
+                            count += 1;
+                            Console.WriteLine($"Quiz {count}: {item}");
+                        }
+                        count = 0;
+                        Console.WriteLine($"Notas Trabajos");
+                        foreach (float item in estudiante.Trabajos)
+                        {
+                            count += 1;
+                            Console.WriteLine($"Trabajo {count}: {item}");
+                        }
+                        count = 0;
+                        Console.WriteLine($"Notas Parciales");
+                        foreach (float item in estudiante.Parciales)
+                        {
+                            count += 1;
+                            Console.WriteLine($"Parcial {count}: {item}");
+                        }
+                        Console.ReadLine();
+                    }
+                    Console.WriteLine($"ENTER para Salir");
+                }
+                else
+                {
+                    Console.WriteLine("No se encontro ningun usuario");
+
+                }
             }
         }
     }
