@@ -96,6 +96,33 @@ namespace Boletin.Entities
             {
                 ListEst.Remove(studentToRemove);
                 MisFunciones.SaveData(ListEst);
+            }else{
+                Console.WriteLine("Estudiante no encontrado");
+                Console.ReadKey();
+            }
+        }
+
+        public void EditItem(List<Estudiante> ListEst)
+        {
+            Console.Clear();
+            Console.WriteLine("Ingrese el codigo del estudiante a Editar: ");
+            string studentCode = Console.ReadLine();
+            Estudiante studentToEdit = ListEst.FirstOrDefault(x => (x.Code ?? string.Empty).Equals(studentCode)) ?? new Estudiante();
+            if (studentToEdit != null)
+            {
+                Console.WriteLine($"1. {studentToEdit.Code} \n2. {studentToEdit.Nombre} \n3. {studentToEdit.Direccion} \n4. {studentToEdit.Edad} \n5. Notas Quices \n6. Notas Quices \n7. Notas Quices \n8. Salir");
+                byte edit = Convert.ToByte(Console.ReadLine());
+                string tipo = 
+                edit == 1 ? "codigo" : edit == 2 ? "Nombre" : edit == 3 ? "Direccion" : edit == 4 ? "Direccion" : edit == 5 ? "quiz" : edit == 6 ? "Trabajo" : edit == 7 ? "Parcial" : null;
+                var selec = edit == 1 ? studentToEdit.Nombre = "hola" : edit == 2 ? studentToEdit.Nombre : edit == 3 ? studentToEdit.Nombre : edit == 4 ? studentToEdit.Nombre : edit == 5 ? studentToEdit.Nombre : edit == 6 ? studentToEdit.Nombre : edit == 7 ? studentToEdit.Nombre : null;
+                int idx = ListEst.IndexOf(studentToEdit);
+                ListEst.Remove(studentToEdit);
+                MisFunciones.SaveData(ListEst);
+            }
+            else
+            {
+                Console.WriteLine("Estudiante no encontrado");
+                Console.ReadLine();
             }
         }
     }

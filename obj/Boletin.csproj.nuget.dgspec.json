@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj": {}
+    "c:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj": {
+    "c:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj",
+        "projectUniqueName": "c:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj",
         "projectName": "Boletin",
-        "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj",
+        "projectPath": "c:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj",
         "packagesPath": "C:\\Users\\duvan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\obj\\",
+        "outputPath": "c:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\duvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
