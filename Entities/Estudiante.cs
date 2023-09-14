@@ -30,7 +30,7 @@ namespace Boletin.Entities
         public string Direccion { get => direccion; set => direccion = value; }
         public int Edad { get => edad; set => edad = value; }
 
-        public void AgregarEstudiante(List<Estudiante> estudiantes)
+        public void AgregarEstudiante(Dictionary<string, Estudiante> estudiantes)
         {
             Estudiante estudiante = new Estudiante();
             Console.WriteLine("Codigo: ");
@@ -44,14 +44,16 @@ namespace Boletin.Entities
             estudiante.Quices = new List<float>();
             estudiante.Trabajos = new List<float>();
             estudiante.Parciales = new List<float>();
-            estudiantes.Add(estudiante);
+            estudiantes.Add(estudiante.code, estudiante);
         }
 
-        public void RegistroNota(List<Estudiante> ListaEst, byte opc)
+        public void RegistroNota(Dictionary<string, Estudiante> ListaEst, byte opc)
         {
             Console.WriteLine("Ingrese el codigo del estudiante");
             string studentCode = Console.ReadLine();
-            Estudiante alumno = ListaEst.FirstOrDefault(x => x.Code.Equals(studentCode));
+            Console.WriteLine($"{studentCode}");
+            
+            Estudiante alumno = ListaEst.ContainsKey(studentCode);
             string tipo = opc == 1 ? "quiz" : opc == 2 ? "Trabajo" : opc == 3 ? "Parcial" : null;
             var selec = opc == 1 ? alumno.Quices : opc == 2 ? alumno.Trabajos : opc == 3 ? alumno.Parciales : null;
             Console.WriteLine("Ingrese la nota del {0}: ", tipo);
@@ -86,7 +88,7 @@ namespace Boletin.Entities
             // selec.Add(float.Parse(Console.ReadLine()));
 
         }
-        public void RemoveItem(List<Estudiante> ListEst)
+        public void RemoveItem(Dictionary<string, Estudiante> ListEst)
         {
             Console.Clear();
             Console.WriteLine("Ingrese el codigo del estudiante a eliminar");
@@ -103,7 +105,7 @@ namespace Boletin.Entities
                 Console.ReadKey();
             }
         }
-        public void EditItem(List<Estudiante> ListEst)
+        public void EditItem(Dictionary<string, Estudiante> ListEst)
         {
             Console.Clear();
             byte count = 0;
@@ -217,7 +219,7 @@ namespace Boletin.Entities
             }
         }
 
-        public void SearchItem(List<Estudiante> ListEst)
+        public void SearchItem(Dictionary<string, Estudiante> ListEst)
         {
             int count = 0;
             Console.WriteLine($"Seleccione el dato a buscar: \n1. Codigo \n2. Nombre \n3. Direccion \n4. Edad \n5. Notas Quices \n6. Notas Quices \n7. Notas Quices \n8. Salir");
@@ -237,7 +239,7 @@ namespace Boletin.Entities
                 Console.WriteLine($"digite {tipo} a buscar: ");
                 string searchString = Console.ReadLine();
 
-                List<Estudiante> resultados = new List<Estudiante>();
+                Dictionary<string, Estudiante> resultados = new Dictionary<string, Estudiante>();
 
                 foreach (var estudiante in ListEst)
                 {

@@ -24,19 +24,19 @@ public class MisFunciones
         return Convert.ToByte(Console.ReadLine());
     }
 
-    public static List<Estudiante> SaveData(List<Estudiante> lstListado)
+    public static Dictionary<string, Estudiante> SaveData(Dictionary<string, Estudiante> lstListado)
     {
         string json = JsonConvert.SerializeObject(lstListado, Formatting.Indented);
         File.WriteAllText("data/boletin.json", json);
         return lstListado;
     }
 
-    public static List<Estudiante> LoadData()
+    public static Dictionary<string, Estudiante> LoadData()
     {
         using (StreamReader reader = new StreamReader("data/boletin.json"))
         {
             string json = reader.ReadToEnd();
-            return System.Text.Json.JsonSerializer.Deserialize<List<Estudiante>>(json, new System.Text.Json.JsonSerializerOptions() { PropertyNameCaseInsensitive = true }) ?? new List<Estudiante>();
+            return System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, Estudiante>>(json, new System.Text.Json.JsonSerializerOptions() { PropertyNameCaseInsensitive = true }) ?? new Dictionary<string, Estudiante>();
         }
     }
 }

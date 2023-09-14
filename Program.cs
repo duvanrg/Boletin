@@ -6,7 +6,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        List<Estudiante> ListaEst = new List<Estudiante>();
+        Dictionary<string, Estudiante> ListaEst = new Dictionary<string, Estudiante>();
         Estudiante student = new Estudiante();
         bool run = true;
         ListaEst = MisFunciones.LoadData();

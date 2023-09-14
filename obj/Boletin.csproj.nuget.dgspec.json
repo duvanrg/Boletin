@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\C-sharp\\Boletin\\Boletin.csproj": {}
+    "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\C-sharp\\Boletin\\Boletin.csproj": {
+    "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\C-sharp\\Boletin\\Boletin.csproj",
+        "projectUniqueName": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj",
         "projectName": "Boletin",
-        "projectPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\C-sharp\\Boletin\\Boletin.csproj",
-        "packagesPath": "C:\\Users\\APM02-45\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\APM02-45\\Documents\\Apolo-duban\\Jholver\\C-sharp\\Boletin\\obj\\",
+        "projectPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\Boletin.csproj",
+        "packagesPath": "C:\\Users\\duvan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\duvan\\Archivos\\CampusLand\\Programacion\\Skills\\JS\\c#\\Boletin\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\APM02-45\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\duvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
