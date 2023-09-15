@@ -9,10 +9,12 @@ internal class Program
         Dictionary<string, Estudiante> ListaEst = new Dictionary<string, Estudiante>();
         Estudiante student = new Estudiante();
         bool run = true;
+        // MisFunciones.SaveData(ListaEst);
         ListaEst = MisFunciones.LoadData();
         while (run)
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("1. Registro de estudiantes");
             Console.WriteLine("2. Registro de notas");
             Console.WriteLine("3. Reportes e informes");
@@ -35,17 +37,17 @@ internal class Program
                     {
                         Console.Clear();
                         byte OpcNotas = MisFunciones.MenuNotas();
-                        if (OpcNotas != 0 && OpcNotas < 3)
+                        if (OpcNotas != 0 && OpcNotas <= 3)
                         {
                             Console.Clear();
                             student.RegistroNota(ListaEst, OpcNotas);
                             MisFunciones.SaveData(ListaEst);
+                            Console.ReadKey();
                         }
                         else
                         {
                             menuNotas = false;
                         }
-
                     }
 
                     break;
@@ -59,9 +61,11 @@ internal class Program
                         {
                             case 1:
                                 Console.Clear();
+                                student.NotasGrupo(ListaEst);
                                 break;
                             case 2:
                                 Console.Clear();
+                                student.NotasFinales(ListaEst);
                                 break;
                             case 3:
                                 Console.Clear();

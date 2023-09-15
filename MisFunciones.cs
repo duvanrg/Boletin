@@ -33,10 +33,32 @@ public class MisFunciones
 
     public static Dictionary<string, Estudiante> LoadData()
     {
-        using (StreamReader reader = new StreamReader("data/boletin.json"))
+        if (File.Exists("data/boletin.json"))
         {
-            string json = reader.ReadToEnd();
-            return System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, Estudiante>>(json, new System.Text.Json.JsonSerializerOptions() { PropertyNameCaseInsensitive = true }) ?? new Dictionary<string, Estudiante>();
+            using (StreamReader reader = new StreamReader("data/boletin.json"))
+            {
+                string json = reader.ReadToEnd();
+                return System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, Estudiante>>(json, new System.Text.Json.JsonSerializerOptions() { PropertyNameCaseInsensitive = true }) ?? new Dictionary<string, Estudiante>();
+            }
+        }
+        else
+        {
+            Dictionary<string, Estudiante> lstListado = new Dictionary<string, Estudiante>();
+            string json = JsonConvert.SerializeObject(lstListado, Formatting.Indented);
+            File.WriteAllText("data/boletin.json", json);
+            return lstListado;
+        }
+    }
+
+    public static string checkidx(List<float> lista, int indice)
+    {
+        if (indice >= 0 && indice < lista.Count)
+        {
+            return Convert.ToString(lista[indice]);
+        }
+        else
+        {
+            return "N/A";
         }
     }
 }

@@ -46,7 +46,66 @@ namespace Boletin.Entities
             estudiante.Parciales = new List<float>();
             estudiantes.Add(estudiante.code, estudiante);
         }
+        public void NotasGrupo(Dictionary<string, Estudiante> ListaEst)
+        {
+            if (ListaEst.Count() != 0)
+            {
 
+                string[] titulos = { "id", "nombre", "email", "Quices", "Trabajos", "Parciales", "edad", "direccion" };
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("+{0}+", new string('-', 114));
+                Console.WriteLine("| {0, -15} | {1, -40} | {2, -21} | {3, -9} | {4, -15} |", titulos[0], titulos[1], titulos[3], titulos[4], titulos[5]);
+                Console.WriteLine("+{0}+", new string('-', 114));
+                Console.WriteLine("| {0, -15} | {1, -40} | {2, -3} | {3, -3} | {4, -3} | {5, -3} | {6, -3} | {7, -3} | {8, -3} | {9, -3} | {10, -3} |", "", "", "Q1", "Q2", "Q3", "Q4", "T1", "T2", "P1", "P2", "P3");
+                Console.WriteLine("+{0}+", new string('-', 114));
+                foreach (string code in ListaEst.Keys)
+                {                    
+                    Console.WriteLine($"| {ListaEst[code].Code,-15} | {ListaEst[code].nombre,-40} | {MisFunciones.checkidx(ListaEst[code].Quices,0), -3} | {MisFunciones.checkidx(ListaEst[code].Quices,1), -3} | {MisFunciones.checkidx(ListaEst[code].Quices,2), -3} | {MisFunciones.checkidx(ListaEst[code].Quices,3), -3} | {MisFunciones.checkidx(ListaEst[code].Trabajos,0), -3} | {MisFunciones.checkidx(ListaEst[code].Trabajos,1), -3} | {MisFunciones.checkidx(ListaEst[code].Parciales,0), -3} | {MisFunciones.checkidx(ListaEst[code].Parciales,1), -3} | {MisFunciones.checkidx(ListaEst[code].Parciales,2), -3} |");
+                    Console.WriteLine("+{0}+", new string('-', 114));
+                }
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("+{0}+", new string('-', 39));
+                Console.WriteLine("| No se ha registrado ningun estudiante |");
+                Console.WriteLine("+{0}+", new string('-', 39));
+                Console.ReadKey();
+
+            }
+        }
+        public void NotasFinales(Dictionary<string, Estudiante> ListaEst)
+        {
+            if (ListaEst.Count() != 0)
+            {
+
+                string[] titulos = { "id", "nombre", "def quices", "def Trabajos", "def parciales", "Nota Final" };
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("+{0}+", new string('-', 117));
+                Console.WriteLine("| {0, -15} | {1, -40} | {2, -7} | {3, -7} | {4, -7} | {5, -10} |", titulos[0], titulos[1], titulos[2], titulos[3], titulos[4], titulos[5]);
+                Console.WriteLine("+{0}+", new string('-', 117));
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                foreach (string code in ListaEst.Keys)
+                {
+                    double defQuices = ListaEst[code].Quices.Sum() / ListaEst[code].Quices.Count;
+                    double defTrabajos = ListaEst[code].Trabajos.Sum() / ListaEst[code].Trabajos.Count;
+                    double defParciales = ListaEst[code].Parciales.Sum() / ListaEst[code].Parciales.Count;
+                    double definitiva = (defQuices * 0.25) + (defTrabajos * 0.15) + (defParciales * 0.60);
+                    Console.WriteLine("| {0, -15} | {1, -40} | {2, -10:F1} | {3, -12:F1} | {4, -13:F1} | {5, -10:F1} |", ListaEst[code].Code, ListaEst[code].Nombre, defQuices, defTrabajos, defParciales, definitiva);
+                    Console.WriteLine("+{0}+", new string('-', 117));
+                }
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("+{0}+", new string('-', 39));
+                Console.WriteLine("| No se ha registrado ningun estudiante |");
+                Console.WriteLine("+{0}+", new string('-', 39));
+                Console.ReadKey();
+            }
+        }
         public void RegistroNota(Dictionary<string, Estudiante> ListaEst, byte opc)
         {
             Console.WriteLine("Ingrese el codigo del estudiante");
@@ -57,33 +116,32 @@ namespace Boletin.Entities
             Console.WriteLine("Ingrese la nota del {0}: ", tipo);
             float nota = float.Parse(Console.ReadLine());
             selec.Add(nota);
-            // Console.WriteLine($"{selec[0]}");
-            // foreach (float item in selec)
-            // {
-            //     Console.WriteLine($"{item}");
-            // }
+            /* Console.WriteLine($"{selec[0]}");
+            foreach (float item in selec)
+            {
+                Console.WriteLine($"{item}");
+            }
 
-            Console.ReadKey();
 
-            // switch (opc)
-            // {
-            //     case 1:
-            //         Console.WriteLine($"Quiz Nro: {0}", alumno.Quices.Count() + 1);
-            //         alumno.Quices.Add(float.Parse(Console.ReadLine()));
-            //         break;
-            //     case 2:
-            //         Console.WriteLine($"Trabajo Nro: {0}", alumno.Quices.Count() + 1);
-            //         alumno.Trabajos.Add(float.Parse(Console.ReadLine()));
-            //         break;
-            //     case 3:
-            //         Console.WriteLine($"Parcial Nro: {0}", alumno.Quices.Count() + 1);
-            //         alumno.Parciales.Add(float.Parse(Console.ReadLine()));
-            //         break;
-            //     default:
-            //         break;
-            // }
+            switch (opc)
+            {
+                case 1:
+                    Console.WriteLine($"Quiz Nro: {0}", alumno.Quices.Count() + 1);
+                    alumno.Quices.Add(float.Parse(Console.ReadLine()));
+                    break;
+                case 2:
+                    Console.WriteLine($"Trabajo Nro: {0}", alumno.Quices.Count() + 1);
+                    alumno.Trabajos.Add(float.Parse(Console.ReadLine()));
+                    break;
+                case 3:
+                    Console.WriteLine($"Parcial Nro: {0}", alumno.Quices.Count() + 1);
+                    alumno.Parciales.Add(float.Parse(Console.ReadLine()));
+                    break;
+                default:
+                    break;
+            }
 
-            // selec.Add(float.Parse(Console.ReadLine()));
+            selec.Add(float.Parse(Console.ReadLine())); */
 
         }
         public void RemoveItem(Dictionary<string, Estudiante> ListaEst)
@@ -168,42 +226,42 @@ namespace Boletin.Entities
                     case 4:
                         STE.Edad = Convert.ToInt32(Console.ReadLine());
                         break;
-                    // case 5:
-                    //     Console.WriteLine($"cual nota de {edit} desea editar: ");
-                    //     foreach (float item in selec)
-                    //     {
-                    //         each += 1;
-                    //         Console.WriteLine($"1. {item}");
-                    //     }
-                    //     idxnota = Convert.ToInt32(Console.ReadLine()) - 1;
-                    //     Console.WriteLine($"Digite la nueva nota de {edit}");
-                    //     STE.Quices[idxnota] = float.Parse(Console.ReadLine());
-                    //     ;
-                    //     break;
-                    // case 6:
-                    //     Console.WriteLine($"cual nota de {edit} desea editar: ");
-                    //     foreach (float item in selec)
-                    //     {
-                    //         each += 1;
-                    //         Console.WriteLine($"1. {item}");
-                    //     }
-                    //     idxnota = Convert.ToInt32(Console.ReadLine()) - 1;
-                    //     Console.WriteLine($"Digite la nueva nota de {edit}");
-                    //     selec[idxnota] = float.Parse(Console.ReadLine());
+                    /*                     case 5:
+                                            Console.WriteLine($"cual nota de {edit} desea editar: ");
+                                            foreach (float item in selec)
+                                            {
+                                                each += 1;
+                                                Console.WriteLine($"1. {item}");
+                                            }
+                                            idxnota = Convert.ToInt32(Console.ReadLine()) - 1;
+                                            Console.WriteLine($"Digite la nueva nota de {edit}");
+                                            STE.Quices[idxnota] = float.Parse(Console.ReadLine());
+                                            ;
+                                            break;
+                                        case 6:
+                                            Console.WriteLine($"cual nota de {edit} desea editar: ");
+                                            foreach (float item in selec)
+                                            {
+                                                each += 1;
+                                                Console.WriteLine($"1. {item}");
+                                            }
+                                            idxnota = Convert.ToInt32(Console.ReadLine()) - 1;
+                                            Console.WriteLine($"Digite la nueva nota de {edit}");
+                                            selec[idxnota] = float.Parse(Console.ReadLine());
 
-                    //     break;
-                    // case 7:
-                    //     Console.WriteLine($"cual nota de {edit} desea editar: ");
-                    //     foreach (float item in selec)
-                    //     {
-                    //         each += 1;
-                    //         Console.WriteLine($"1. {item}");
-                    //     }
-                    //     idxnota = Convert.ToInt32(Console.ReadLine()) - 1;
-                    //     Console.WriteLine($"Digite la nueva nota de {edit}");
-                    //     STE.Parciales[idxnota] = float.Parse(Console.ReadLine());
-                    //     ;
-                    //     break;
+                                            break;
+                                        case 7:
+                                            Console.WriteLine($"cual nota de {edit} desea editar: ");
+                                            foreach (float item in selec)
+                                            {
+                                                each += 1;
+                                                Console.WriteLine($"1. {item}");
+                                            }
+                                            idxnota = Convert.ToInt32(Console.ReadLine()) - 1;
+                                            Console.WriteLine($"Digite la nueva nota de {edit}");
+                                            STE.Parciales[idxnota] = float.Parse(Console.ReadLine());
+                                            ;
+                                            break; */
                     default:
                         // Console.WriteLine($"Opcion Invalida");
                         break;

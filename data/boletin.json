@@ -5,19 +5,26 @@
     "Direccion": "campus",
     "Edad": 20,
     "Quices": [
-      2.5
+      2.5,
+      4.0
     ],
-    "Trabajos": [],
-    "Parciales": []
+    "Trabajos": [
+      4.2,
+      3.8
+    ],
+    "Parciales": [
+      5.0,
+      4.0
+    ]
   },
   "321": {
     "Code": "321",
-    "Nombre": "paola",
-    "Direccion": "campus",
-    "Edad": 18,
+    "Nombre": "Wendy",
+    "Direccion": "indefinida",
+    "Edad": 20,
     "Quices": [],
     "Trabajos": [
-      4.5
+      5.0
     ],
     "Parciales": []
   }
