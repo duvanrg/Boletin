@@ -1,28 +1,11 @@
-[
-  {
-    "Code": "111",
-    "Nombre": "Duban Rodriguez",
+{
+  "123": {
+    "Code": "123",
+    "Nombre": "duban",
     "Direccion": "campus",
-    "Edad": 21,
-    "Quices": [
-      4.0,
-      5.0,
-      4.5
-    ],
-    "Trabajos": [
-      4.0
-    ],
-    "Parciales": []
-  },
-  {
-    "Code": "321",
-    "Nombre": "paola",
-    "Direccion": "campus",
-    "Edad": 18,
+    "Edad": 20,
     "Quices": [],
     "Trabajos": [],
-    "Parciales": [
-      3.0
-    ]
+    "Parciales": []
   }
-]
+}

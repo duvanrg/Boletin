@@ -51,9 +51,7 @@ namespace Boletin.Entities
         {
             Console.WriteLine("Ingrese el codigo del estudiante");
             string studentCode = Console.ReadLine();
-            Console.WriteLine($"{studentCode}");
-            
-            Estudiante alumno = ListaEst.ContainsKey(studentCode);
+            Estudiante alumno = ListaEst.ContainsKey(studentCode) ? ListaEst[studentCode] : null;
             string tipo = opc == 1 ? "quiz" : opc == 2 ? "Trabajo" : opc == 3 ? "Parcial" : null;
             var selec = opc == 1 ? alumno.Quices : opc == 2 ? alumno.Trabajos : opc == 3 ? alumno.Parciales : null;
             Console.WriteLine("Ingrese la nota del {0}: ", tipo);
@@ -88,16 +86,16 @@ namespace Boletin.Entities
             // selec.Add(float.Parse(Console.ReadLine()));
 
         }
-        public void RemoveItem(Dictionary<string, Estudiante> ListEst)
+        public void RemoveItem(Dictionary<string, Estudiante> ListaEst)
         {
             Console.Clear();
             Console.WriteLine("Ingrese el codigo del estudiante a eliminar");
             string studentCode = Console.ReadLine();
-            Estudiante studentToRemove = ListEst.FirstOrDefault(x => (x.Code ?? string.Empty).Equals(studentCode)) ?? new Estudiante();
+            Estudiante studentToRemove = ListaEst.ContainsKey(studentCode) ? ListaEst[studentCode] : null;
             if (studentToRemove != null)
             {
-                ListEst.Remove(studentToRemove);
-                MisFunciones.SaveData(ListEst);
+                ListaEst.Remove(studentCode);
+                MisFunciones.SaveData(ListaEst);
             }
             else
             {
@@ -105,14 +103,14 @@ namespace Boletin.Entities
                 Console.ReadKey();
             }
         }
-        public void EditItem(Dictionary<string, Estudiante> ListEst)
+        public void EditItem(Dictionary<string, Estudiante> ListaEst)
         {
             Console.Clear();
             byte count = 0;
             int idxnota = 0;
             Console.WriteLine("Ingrese el codigo del estudiante a Editar: ");
             string studentCode = Console.ReadLine();
-            Estudiante STE = ListEst.FirstOrDefault(x => (x.Code ?? string.Empty).Equals(studentCode)) ?? new Estudiante();
+            Estudiante STE = ListaEst.ContainsKey(studentCode) ? ListaEst[studentCode] : null;
             if (STE != null)
             {
                 Console.Clear();
@@ -210,7 +208,7 @@ namespace Boletin.Entities
                         // Console.WriteLine($"Opcion Invalida");
                         break;
                 }
-                MisFunciones.SaveData(ListEst);
+                MisFunciones.SaveData(ListaEst);
             }
             else
             {
@@ -219,7 +217,7 @@ namespace Boletin.Entities
             }
         }
 
-        public void SearchItem(Dictionary<string, Estudiante> ListEst)
+        public void SearchItem(Dictionary<string, Estudiante> ListaEst)
         {
             int count = 0;
             Console.WriteLine($"Seleccione el dato a buscar: \n1. Codigo \n2. Nombre \n3. Direccion \n4. Edad \n5. Notas Quices \n6. Notas Quices \n7. Notas Quices \n8. Salir");
@@ -241,37 +239,37 @@ namespace Boletin.Entities
 
                 Dictionary<string, Estudiante> resultados = new Dictionary<string, Estudiante>();
 
-                foreach (var estudiante in ListEst)
+                foreach (string cod in ListaEst.Keys)
                 {
                     switch (selec)
                     {
                         case 1:
-                            if (estudiante.Code == searchString)
-                                resultados.Add(estudiante);
+                            if (ListaEst[cod].Code == searchString)
+                                resultados.Add(cod, ListaEst[cod]);
                             break;
                         case 2:
-                            if (estudiante.Nombre == searchString)
-                                resultados.Add(estudiante);
+                            if (ListaEst[cod].Nombre == searchString)
+                                resultados.Add(cod, ListaEst[cod]);
                             break;
                         case 3:
-                            if (estudiante.Direccion == searchString)
-                                resultados.Add(estudiante);
+                            if (ListaEst[cod].Direccion == searchString)
+                                resultados.Add(cod, ListaEst[cod]);
                             break;
                         case 4:
-                            if (estudiante.Edad == Convert.ToInt32(searchString))
-                                resultados.Add(estudiante);
+                            if (ListaEst[cod].Edad == Convert.ToInt32(searchString))
+                                resultados.Add(cod, ListaEst[cod]);
                             break;
                         case 5:
-                            if (estudiante.Quices.Contains(float.Parse(searchString)))
-                                resultados.Add(estudiante);
+                            if (ListaEst[cod].Quices.Contains(float.Parse(searchString)))
+                                resultados.Add(cod, ListaEst[cod]);
                             break;
                         case 6:
-                            if (estudiante.Trabajos.Contains(float.Parse(searchString)))
-                                resultados.Add(estudiante);
+                            if (ListaEst[cod].Trabajos.Contains(float.Parse(searchString)))
+                                resultados.Add(cod, ListaEst[cod]);
                             break;
                         case 7:
-                            if (estudiante.Parciales.Contains(float.Parse(searchString)))
-                                resultados.Add(estudiante);
+                            if (ListaEst[cod].Parciales.Contains(float.Parse(searchString)))
+                                resultados.Add(cod, ListaEst[cod]);
                             break;
                         default:
                             break;
@@ -282,27 +280,27 @@ namespace Boletin.Entities
 
                     Console.WriteLine($"Resultados de la búsqueda por {tipo}:");
                     Console.WriteLine($"{resultados}");
-                    foreach (Estudiante estudiante in resultados)
+                    foreach (string cod in resultados.Keys)
                     {
                         Console.Clear();
-                        Console.WriteLine($"Codigo: {estudiante.Code} \nNombre: {estudiante.Nombre} \nDireccion: {estudiante.Direccion} \nEdad: {estudiante.Edad}");
+                        Console.WriteLine($"Codigo: {ListaEst[cod].Code} \nNombre: {ListaEst[cod].Nombre} \nDireccion: {ListaEst[cod].Direccion} \nEdad: {ListaEst[cod].Edad}");
                         Console.WriteLine($"Notas Quices");
                         count = 0;
-                        foreach (float item in estudiante.Quices)
+                        foreach (float item in ListaEst[cod].Quices)
                         {
                             count += 1;
                             Console.WriteLine($"Quiz {count}: {item}");
                         }
                         count = 0;
                         Console.WriteLine($"Notas Trabajos");
-                        foreach (float item in estudiante.Trabajos)
+                        foreach (float item in ListaEst[cod].Trabajos)
                         {
                             count += 1;
                             Console.WriteLine($"Trabajo {count}: {item}");
                         }
                         count = 0;
                         Console.WriteLine($"Notas Parciales");
-                        foreach (float item in estudiante.Parciales)
+                        foreach (float item in ListaEst[cod].Parciales)
                         {
                             count += 1;
                             Console.WriteLine($"Parcial {count}: {item}");
