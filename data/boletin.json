@@ -4,8 +4,21 @@
     "Nombre": "duban",
     "Direccion": "campus",
     "Edad": 20,
-    "Quices": [],
+    "Quices": [
+      2.5
+    ],
     "Trabajos": [],
+    "Parciales": []
+  },
+  "321": {
+    "Code": "321",
+    "Nombre": "paola",
+    "Direccion": "campus",
+    "Edad": 18,
+    "Quices": [],
+    "Trabajos": [
+      4.5
+    ],
     "Parciales": []
   }
 }

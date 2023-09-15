@@ -35,7 +35,7 @@ internal class Program
                     {
                         Console.Clear();
                         byte OpcNotas = MisFunciones.MenuNotas();
-                        if (OpcNotas != 0 || OpcNotas > 3)
+                        if (OpcNotas != 0 && OpcNotas < 3)
                         {
                             Console.Clear();
                             student.RegistroNota(ListaEst, OpcNotas);
